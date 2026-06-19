@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pablo Ruiz Arango</title>
+<meta name="description" content="Pablo is a finance professional, speaker and community builder.">
+
+<!--
+  ============================================================
+  HOW TO EDIT THIS SITE
+  ============================================================
+  1. Search for "EDIT ME" comments — they mark every spot
+     you should change (text, links, image filenames).
+  2. Put your photos in an "images" folder next to this file,
+     and use the SAME filenames referenced below, e.g.
+     images/headshot.jpg, images/hero-1.jpg, etc.
+     (Or just rename your photos to match.)
+  3. That's it — no build tools, no Wix. Open index.html in
+     a browser to preview, then upload the folder anywhere.
+  ============================================================
+-->
+
+<style>
+  :root{
+    --bg:#0e1116;
+    --bg-soft:#161b22;
+    --line:#262c36;
+    --ink:#f4f3ef;
+    --ink-dim:#a9b0bb;
+    --accent:#15e0fb;
+    --accent-dim:#0c8ea3;
+    --serif:"Georgia","Iowan Old Style","Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;
+    --max:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(14,17,22,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    max-width:var(--max);margin:0 auto;padding:18px 28px;
+  }
+  .logo{
+    font-family:var(--serif);
+    font-size:1.25rem;
+    letter-spacing:.08em;
+  }
+  .nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+  .nav-links a{
+    font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink-dim);transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--accent);}
+  .btn{
+    border:1px solid var(--accent);color:var(--accent);
+    padding:10px 22px;border-radius:2px;font-size:.8rem;
+    letter-spacing:.08em;text-transform:uppercase;
+    transition:background .2s,color .2s;
+  }
+  .btn:hover{background:var(--accent);color:#0e1116;}
+  .menu-toggle{display:none;background:none;border:none;color:var(--ink);font-size:1.6rem;cursor:pointer;}
+
+  @media(max-width:820px){
+    .nav-links{
+      position:fixed;inset:64px 0 0 0;background:var(--bg);
+      flex-direction:column;padding:32px 0;gap:24px;
+      transform:translateY(-110%);transition:transform .3s ease;
+    }
+    .nav-links.open{transform:translateY(0);}
+    .menu-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:90px 0 60px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;
+  }
+  .eyebrow{
+    color:var(--accent);font-size:.8rem;letter-spacing:.18em;
+    text-transform:uppercase;margin-bottom:18px;
+  }
+  h1.headline{
+    font-family:var(--serif);
+    font-size:clamp(2.1rem,5vw,3.4rem);
+    line-height:1.08;letter-spacing:-.01em;margin-bottom:24px;
+  }
+  h1.headline em{color:var(--accent);font-style:normal;}
+  .hero-roles{
+    display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;
+  }
+  .role-tag{
+    border:1px solid var(--line);padding:8px 16px;border-radius:999px;
+    font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--ink-dim);
+  }
+  .hero-photo{
+    aspect-ratio:4/5;background:var(--bg-soft);border:1px solid var(--line);
+    overflow:hidden;border-radius:4px;
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;}
+  .social-row{display:flex;gap:14px;margin-top:24px;}
+  .social-row a{
+    width:36px;height:36px;border:1px solid var(--line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:.85rem;
+    color:var(--ink-dim);transition:.2s;
+  }
+  .social-row a:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* ---------- PHOTO STRIP ---------- */
+  .strip{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+    padding:40px 0;
+  }
+  .strip .ph{aspect-ratio:4/3;background:var(--bg-soft);overflow:hidden;border-radius:3px;}
+  .strip .ph img{width:100%;height:100%;object-fit:cover;}
+  @media(max-width:700px){.strip{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- SECTION HEADINGS ---------- */
+  section{padding:80px 0;border-bottom:1px solid var(--line);}
+  .label{
+    color:var(--accent);font-size:.8rem;letter-spacing:.18em;
+    text-transform:uppercase;margin-bottom:10px;
+  }
+  h2.title{
+    font-family:var(--serif);font-size:clamp(1.6rem,3.4vw,2.3rem);
+    margin-bottom:40px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start;}
+  .about-photo{
+    aspect-ratio:3/4;background:var(--bg-soft);border:1px solid var(--line);
+    overflow:hidden;border-radius:4px;
+  }
+  .about-photo img{width:100%;height:100%;object-fit:cover;}
+  .about-text p{color:var(--ink-dim);margin-bottom:18px;font-size:1.02rem;}
+  .about-text p strong{color:var(--ink);}
+  @media(max-width:820px){.about-grid,.hero-grid{grid-template-columns:1fr;}}
+
+  /* ---------- SPEAKING GALLERY ---------- */
+  .gallery{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  }
+  .gallery .ph{aspect-ratio:1/1;background:var(--bg-soft);overflow:hidden;border-radius:3px;}
+  .gallery .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+  .gallery .ph:hover img{transform:scale(1.05);}
+  @media(max-width:700px){.gallery{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- FEATURED IN ---------- */
+  .logos{
+    display:flex;flex-wrap:wrap;gap:48px;align-items:center;justify-content:center;
+    opacity:.8;
+  }
+  .logos img{height:42px;width:auto;filter:grayscale(1) brightness(1.6);}
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+  form{display:flex;flex-direction:column;gap:16px;}
+  input,textarea{
+    background:var(--bg-soft);border:1px solid var(--line);color:var(--ink);
+    padding:14px 16px;border-radius:3px;font-family:var(--sans);font-size:.95rem;
+  }
+  textarea{min-height:120px;resize:vertical;}
+  input:focus,textarea:focus{outline:none;border-color:var(--accent);}
+  button[type=submit]{
+    align-self:flex-start;background:var(--accent);color:#0e1116;border:none;
+    padding:14px 32px;border-radius:2px;font-size:.85rem;letter-spacing:.08em;
+    text-transform:uppercase;cursor:pointer;transition:opacity .2s;
+  }
+  button[type=submit]:hover{opacity:.85;}
+  .contact-info p{color:var(--ink-dim);margin-bottom:8px;}
+  .contact-info a{color:var(--accent);}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:32px 0;text-align:center;color:var(--ink-dim);font-size:.85rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">PABLO RUIZ ARANGO</div> <!-- EDIT ME: your name -->
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#speaking">Speaking</a></li>   <!-- EDIT ME: rename/remove sections as needed -->
+      <li><a href="#featured">Featured In</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="btn">Book Me</a></li> <!-- EDIT ME: CTA text -->
+    </ul>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Finance · Strategy · Global Markets</div> <!-- EDIT ME -->
+      <h1 class="headline">To lead with <em>integrity</em>, advise with <em>insight</em></h1> <!-- EDIT ME: your tagline -->
+      <div class="hero-roles">
+        <span class="role-tag">Finance Analyst</span>   <!-- EDIT ME: your role tags -->
+        <span class="role-tag">Speaker</span>
+        <span class="role-tag">Community Builder</span>
+      </div>
+      <div class="social-row">
+        <a href="https://www.linkedin.com/in/YOUR-HANDLE/" target="_blank" rel="noopener">in</a> <!-- EDIT ME: your LinkedIn -->
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="images/hero-main.jpg" alt="Portrait"> <!-- EDIT ME: replace image -->
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="strip">
+    <div class="ph"><img src="images/strip-1.jpg" alt=""></div> <!-- EDIT ME: 4 candid photos -->
+    <div class="ph"><img src="images/strip-2.jpg" alt=""></div>
+    <div class="ph"><img src="images/strip-3.jpg" alt=""></div>
+    <div class="ph"><img src="images/strip-4.jpg" alt=""></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo">
+      <img src="images/about.jpg" alt="About photo"> <!-- EDIT ME -->
+    </div>
+    <div class="about-text">
+      <div class="label">About</div>
+      <h2 class="title">Award-winning [your title], builder & speaker</h2> <!-- EDIT ME -->
+
+      <!-- EDIT ME: replace every paragraph below with your own bio -->
+      <p><strong>Pablo</strong> is a finance professional and student bridging emerging markets and global institutions. He is currently an intern at HSBC México in the Global Payments Solutions division, after completing a Finance & Merchandising internship at Loro Piana (LVMH) in Milan.</p>
+      <p>He studies International Economics &amp; Management at Bocconi University and will join the CEMS Master's Double Degree in September 2026.</p>
+      <p>His work and research focus on Federal Reserve policy spillovers into Latin American sovereign markets, with an emphasis on Mexico.</p>
+      <p>Pablo has held roles spanning HSBC UK, BCG, EY and Allianz, and founded De Raíz, a tutoring programme for underserved children in Mexico.</p>
+    </div>
+  </div>
+</section>
+
+<section id="speaking">
+  <div class="wrap">
+    <div class="label">Speaking Highlights</div>
+    <h2 class="title">Speaking</h2>
+    <div class="gallery">
+      <!-- EDIT ME: add/remove as many as you like, just copy this block -->
+      <div class="ph"><img src="images/talk-1.jpg" alt=""></div>
+      <div class="ph"><img src="images/talk-2.jpg" alt=""></div>
+      <div class="ph"><img src="images/talk-3.jpg" alt=""></div>
+      <div class="ph"><img src="images/talk-4.jpg" alt=""></div>
+      <div class="ph"><img src="images/talk-5.jpg" alt=""></div>
+      <div class="ph"><img src="images/talk-6.jpg" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<section id="featured">
+  <div class="wrap">
+    <div class="label" style="text-align:center;">As Featured In</div>
+    <h2 class="title" style="text-align:center;">Featured In</h2>
+    <div class="logos">
+      <!-- EDIT ME: swap in real logos, or delete this section entirely -->
+      <img src="images/logo-1.png" alt="Org logo">
+      <img src="images/logo-2.png" alt="Org logo">
+      <img src="images/logo-3.png" alt="Org logo">
+      <img src="images/logo-4.png" alt="Org logo">
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <div class="label">Get In Touch</div>
+      <h2 class="title">Contact</h2>
+      <!--
+        EDIT ME: This form currently does nothing on its own (it's a static
+        site, no backend). Easiest free fix: sign up at formspree.io (free
+        tier), get an endpoint URL, and paste it into the action="" below.
+        Then submissions land in your email automatically.
+      -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" placeholder="Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <div class="contact-info">
+      <p>Prefer email?</p>
+      <p><a href="mailto:you@example.com">you@example.com</a></p> <!-- EDIT ME -->
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Pablo Ruiz Arango. All rights reserved.</div> <!-- EDIT ME -->
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>
+
+</body>
+</html>
