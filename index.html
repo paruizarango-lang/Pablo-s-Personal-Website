@@ -8,13 +8,13 @@
 
 <style>
   :root{
-    --bg:#0e1116;
-    --bg-soft:#161b22;
-    --line:#262c36;
-    --ink:#f4f3ef;
-    --ink-dim:#a9b0bb;
-    --accent:#15e0fb;
-    --accent-dim:#0c8ea3;
+    --bg:#ffffff;
+    --bg-soft:#f5f5f3;
+    --line:#e4e4e0;
+    --ink:#1a1a1a;
+    --ink-dim:#6b7280;
+    --accent:#0a6e7c;
+    --accent-light:#e6f4f6;
     --serif:"Georgia","Iowan Old Style","Times New Roman",serif;
     --sans:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;
     --max:1120px;
@@ -35,7 +35,7 @@
   /* ---------- NAV ---------- */
   header{
     position:sticky;top:0;z-index:50;
-    background:rgba(14,17,22,.85);
+    background:rgba(255,255,255,.92);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
@@ -47,6 +47,7 @@
     font-family:var(--serif);
     font-size:1.25rem;
     letter-spacing:.08em;
+    color:var(--ink);
   }
   .nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
   .nav-links a{
@@ -60,7 +61,7 @@
     letter-spacing:.08em;text-transform:uppercase;
     transition:background .2s,color .2s;
   }
-  .btn:hover{background:var(--accent);color:#0e1116;}
+  .btn:hover{background:var(--accent);color:#fff;}
   .menu-toggle{display:none;background:none;border:none;color:var(--ink);font-size:1.6rem;cursor:pointer;}
 
   @media(max-width:820px){
@@ -89,6 +90,7 @@
     font-family:var(--serif);
     font-size:clamp(2.1rem,5vw,3.4rem);
     line-height:1.08;letter-spacing:-.01em;margin-bottom:24px;
+    color:var(--ink);
   }
   h1.headline em{color:var(--accent);font-style:normal;}
   .hero-roles{
@@ -97,7 +99,7 @@
   .role-tag{
     border:1px solid var(--line);padding:8px 16px;border-radius:999px;
     font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;
-    color:var(--ink-dim);
+    color:var(--ink-dim);background:var(--bg-soft);
   }
   .hero-photo{
     aspect-ratio:4/5;background:var(--bg-soft);border:1px solid var(--line);
@@ -108,9 +110,9 @@
   .social-row a{
     width:36px;height:36px;border:1px solid var(--line);border-radius:50%;
     display:flex;align-items:center;justify-content:center;font-size:.85rem;
-    color:var(--ink-dim);transition:.2s;
+    color:var(--ink-dim);transition:.2s;background:var(--bg-soft);
   }
-  .social-row a:hover{border-color:var(--accent);color:var(--accent);}
+  .social-row a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light);}
 
   /* ---------- PHOTO STRIP ---------- */
   .strip{
@@ -129,7 +131,7 @@
   }
   h2.title{
     font-family:var(--serif);font-size:clamp(1.6rem,3.4vw,2.3rem);
-    margin-bottom:40px;
+    margin-bottom:40px;color:var(--ink);
   }
 
   /* ---------- ABOUT ---------- */
@@ -164,9 +166,9 @@
   /* ---------- FEATURED IN ---------- */
   .logos{
     display:flex;flex-wrap:wrap;gap:48px;align-items:center;justify-content:center;
-    opacity:.8;
   }
-  .logos img{height:42px;width:auto;filter:grayscale(1) brightness(1.6);}
+  .logos img{height:42px;width:auto;filter:grayscale(1) opacity(.45);}
+  .logos img:hover{filter:grayscale(0) opacity(1);transition:filter .3s;}
 
   /* ---------- CONTACT ---------- */
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
@@ -175,10 +177,11 @@
     background:var(--bg-soft);border:1px solid var(--line);color:var(--ink);
     padding:14px 16px;border-radius:3px;font-family:var(--sans);font-size:.95rem;
   }
+  input::placeholder,textarea::placeholder{color:var(--ink-dim);}
   textarea{min-height:120px;resize:vertical;}
   input:focus,textarea:focus{outline:none;border-color:var(--accent);}
   button[type=submit]{
-    align-self:flex-start;background:var(--accent);color:#0e1116;border:none;
+    align-self:flex-start;background:var(--accent);color:#fff;border:none;
     padding:14px 32px;border-radius:2px;font-size:.85rem;letter-spacing:.08em;
     text-transform:uppercase;cursor:pointer;transition:opacity .2s;
   }
@@ -187,7 +190,7 @@
   .contact-info a{color:var(--accent);}
 
   /* ---------- FOOTER ---------- */
-  footer{padding:32px 0;text-align:center;color:var(--ink-dim);font-size:.85rem;}
+  footer{padding:32px 0;text-align:center;color:var(--ink-dim);font-size:.85rem;border-top:1px solid var(--line);}
 </style>
 </head>
 <body>
@@ -218,7 +221,7 @@
         <span class="role-tag">Community Builder</span>
       </div>
       <div class="social-row">
-        <a href="https://www.linkedin.com/in/YOUR-HANDLE/" target="_blank" rel="noopener">in</a> <!-- EDIT ME: your LinkedIn -->
+        <a href="https://www.linkedin.com/in/YOUR-HANDLE/" target="_blank" rel="noopener">in</a> <!-- EDIT ME -->
       </div>
     </div>
     <div class="hero-photo">
@@ -257,7 +260,6 @@
     <div class="label">Speaking Highlights</div>
     <h2 class="title">Speaking</h2>
     <div class="gallery">
-      <!-- EDIT ME: replace with your own speaking photos -->
       <div class="ph"><img src="images/talk-1.jpg" alt=""></div>
       <div class="ph"><img src="images/talk-2.jpg" alt=""></div>
       <div class="ph"><img src="images/talk-3.jpg" alt=""></div>
@@ -273,7 +275,7 @@
     <div class="label">Recognition</div>
     <h2 class="title">Notable Awards</h2>
     <div class="awards-gallery">
-      <!-- EDIT ME: replace with your award photos, named award-1.jpg through award-4.jpg -->
+      <!-- EDIT ME: name your photos award-1.jpg through award-4.jpg -->
       <div class="ph"><img src="images/award-1.jpg" alt="Award"></div>
       <div class="ph"><img src="images/award-2.jpg" alt="Award"></div>
       <div class="ph"><img src="images/award-3.jpg" alt="Award"></div>
@@ -287,7 +289,6 @@
     <div class="label" style="text-align:center;">As Featured In</div>
     <h2 class="title" style="text-align:center;">Featured In</h2>
     <div class="logos">
-      <!-- EDIT ME: swap in real logos -->
       <img src="images/logo-1.png" alt="Org logo">
       <img src="images/logo-2.png" alt="Org logo">
       <img src="images/logo-3.png" alt="Org logo">
