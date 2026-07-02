@@ -149,18 +149,70 @@
   .gallery{
     display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
   }
-  .gallery .ph{aspect-ratio:1/1;background:var(--bg-soft);overflow:hidden;border-radius:3px;}
+  .gallery .ph{
+    aspect-ratio:1/1;background:var(--bg-soft);overflow:hidden;border-radius:3px;
+    position:relative;cursor:pointer;
+  }
   .gallery .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
   .gallery .ph:hover img{transform:scale(1.05);}
+  .gallery .ph .caption{
+    position:absolute;bottom:0;left:0;right:0;
+    background:linear-gradient(transparent, rgba(0,0,0,.72));
+    color:#fff;padding:28px 14px 14px;
+    font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;
+    opacity:0;transition:opacity .3s;
+  }
+  .gallery .ph:hover .caption{opacity:1;}
   @media(max-width:700px){.gallery{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    display:none;position:fixed;inset:0;z-index:200;
+    background:rgba(0,0,0,.92);align-items:center;justify-content:center;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox-inner{
+    display:grid;grid-template-columns:1fr 1fr;
+    max-width:900px;width:90%;gap:0;border-radius:6px;overflow:hidden;
+  }
+  .lightbox-img{background:#111;}
+  .lightbox-img img{width:100%;height:100%;object-fit:cover;display:block;}
+  .lightbox-text{
+    background:#fff;padding:48px 40px;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .lightbox-text .label{color:var(--accent);margin-bottom:12px;}
+  .lightbox-text h3{
+    font-family:var(--serif);font-size:clamp(1.4rem,3vw,2rem);
+    color:var(--ink);line-height:1.15;
+  }
+  .lightbox-close{
+    position:fixed;top:24px;right:28px;background:none;border:none;
+    color:#fff;font-size:2rem;cursor:pointer;z-index:201;line-height:1;
+  }
+  @media(max-width:640px){
+    .lightbox-inner{grid-template-columns:1fr;}
+    .lightbox-text{padding:28px 24px;}
+  }
 
   /* ---------- AWARDS GALLERY ---------- */
   .awards-gallery{
     display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
   }
-  .awards-gallery .ph{aspect-ratio:1/1;background:var(--bg-soft);overflow:hidden;border-radius:3px;}
+  .awards-gallery .ph{
+    aspect-ratio:1/1;background:var(--bg-soft);overflow:hidden;border-radius:3px;
+    position:relative;cursor:pointer;
+  }
   .awards-gallery .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
   .awards-gallery .ph:hover img{transform:scale(1.05);}
+  .awards-gallery .ph .caption{
+    position:absolute;bottom:0;left:0;right:0;
+    background:linear-gradient(transparent, rgba(0,0,0,.72));
+    color:#fff;padding:28px 14px 14px;
+    font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;
+    opacity:0;transition:opacity .3s;
+  }
+  .awards-gallery .ph:hover .caption{opacity:1;}
   @media(max-width:820px){.awards-gallery{grid-template-columns:repeat(2,1fr);}}
 
   /* ---------- FEATURED IN ---------- */
@@ -260,12 +312,30 @@
     <div class="label">Speaking Highlights</div>
     <h2 class="title">Speaking</h2>
     <div class="gallery">
-      <div class="ph"><img src="images/talk-1.jpg" alt=""></div>
-      <div class="ph"><img src="images/talk-2.jpg" alt=""></div>
-      <div class="ph"><img src="images/talk-3.jpg" alt=""></div>
-      <div class="ph"><img src="images/talk-4.jpg" alt=""></div>
-      <div class="ph"><img src="images/talk-5.jpg" alt=""></div>
-      <div class="ph"><img src="images/talk-6.jpg" alt=""></div>
+      <div class="ph" data-title="Winter Olympics 2026 Global Press" data-section="Speaking" onclick="openLightbox(this)">
+        <img src="images/talk-1.jpg" alt="Winter Olympics 2026 Global Press">
+        <div class="caption">Winter Olympics 2026 Global Press</div>
+      </div>
+      <div class="ph" data-title="Valedictorian Speech" data-section="Speaking" onclick="openLightbox(this)">
+        <img src="images/talk-2.jpg" alt="Valedictorian Speech">
+        <div class="caption">Valedictorian Speech</div>
+      </div>
+      <div class="ph" data-title="HSBC Summer Intern Closing Speech" data-section="Speaking" onclick="openLightbox(this)">
+        <img src="images/talk-3.jpg" alt="HSBC Summer Intern Closing Speech">
+        <div class="caption">HSBC Summer Intern Closing Speech</div>
+      </div>
+      <div class="ph" data-title="Britannia Youth Organization Summit" data-section="Speaking" onclick="openLightbox(this)">
+        <img src="images/talk-4.jpg" alt="Britannia Youth Organization Summit">
+        <div class="caption">Britannia Youth Organization Summit</div>
+      </div>
+      <div class="ph" data-title="Britannia Youth Organization Summit" data-section="Speaking" onclick="openLightbox(this)">
+        <img src="images/talk-5.jpg" alt="Britannia Youth Organization Summit">
+        <div class="caption">Britannia Youth Organization Summit</div>
+      </div>
+      <div class="ph" data-title="Britannia Youth Organization Summit" data-section="Speaking" onclick="openLightbox(this)">
+        <img src="images/talk-6.jpg" alt="Britannia Youth Organization Summit">
+        <div class="caption">Britannia Youth Organization Summit</div>
+      </div>
     </div>
   </div>
 </section>
@@ -275,11 +345,22 @@
     <div class="label">Recognition</div>
     <h2 class="title">Notable Awards</h2>
     <div class="awards-gallery">
-      <!-- EDIT ME: name your photos award-1.jpg through award-4.jpg -->
-      <div class="ph"><img src="images/award-1.jpg" alt="Award"></div>
-      <div class="ph"><img src="images/award-2.jpg" alt="Award"></div>
-      <div class="ph"><img src="images/award-3.jpg" alt="Award"></div>
-      <div class="ph"><img src="images/award-4.jpg" alt="Award"></div>
+      <div class="ph" data-title="HSBC UK Intern of the Year" data-section="Notable Awards" onclick="openLightbox(this)">
+        <img src="images/award-1.jpg" alt="HSBC UK Intern of the Year">
+        <div class="caption">HSBC UK Intern of the Year</div>
+      </div>
+      <div class="ph" data-title="Class Valedictorian — Top of Graduating Class" data-section="Notable Awards" onclick="openLightbox(this)">
+        <img src="images/award-2.jpg" alt="Class Valedictorian">
+        <div class="caption">Class Valedictorian — Top of Graduating Class</div>
+      </div>
+      <div class="ph" data-title="Nova 111 List — Top 10 Students with Highest Potential (Economics)" data-section="Notable Awards" onclick="openLightbox(this)">
+        <img src="images/award-3.jpg" alt="Nova 111 List">
+        <div class="caption">Nova 111 List — Top 10 Students (Economics)</div>
+      </div>
+      <div class="ph" data-title="Best Student Academic Distinction Award 2020–2023" data-section="Notable Awards" onclick="openLightbox(this)">
+        <img src="images/award-4.jpg" alt="Academic Distinction Award">
+        <div class="caption">Academic Distinction Award 2020–2023</div>
+      </div>
     </div>
   </div>
 </section>
@@ -326,11 +407,37 @@
   <div class="wrap">© 2026 Pablo Ruiz Arango. All rights reserved.</div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <div class="lightbox-inner">
+    <div class="lightbox-img"><img id="lightboxImg" src="" alt=""></div>
+    <div class="lightbox-text">
+      <div class="label" id="lightboxSection">Speaking</div>
+      <h3 id="lightboxTitle"></h3>
+    </div>
+  </div>
+</div>
+
 <script>
   const toggle = document.getElementById('menuToggle');
   const links = document.getElementById('navLinks');
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  function openLightbox(el){
+    document.getElementById('lightboxImg').src = el.querySelector('img').src;
+    document.getElementById('lightboxTitle').textContent = el.dataset.title;
+    document.getElementById('lightboxSection').textContent = el.dataset.section || 'Speaking';
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e){
+    if(e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox({target:document.getElementById('lightbox')}); });
 </script>
 
 </body>
