@@ -5,16 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pablo Ruiz Arango</title>
 <meta name="description" content="Pablo is a finance professional, speaker and community builder.">
-
 <style>
   :root{
-    --bg:#ffffff;
-    --bg-soft:#f5f5f3;
-    --line:#e4e4e0;
-    --ink:#1a1a1a;
-    --ink-dim:#6b7280;
-    --accent:#0a6e7c;
-    --accent-light:#e6f4f6;
+    --bg:#ffffff;--bg-soft:#f5f5f3;--line:#e4e4e0;--ink:#1a1a1a;--ink-dim:#6b7280;
+    --accent:#0a6e7c;--accent-light:#e6f4f6;
     --serif:"Georgia","Iowan Old Style","Times New Roman",serif;
     --sans:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;
     --max:1120px;
@@ -55,18 +49,23 @@
   .social-row{display:flex;gap:14px;margin-top:24px;}
   .social-row a{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--ink-dim);transition:.2s;background:var(--bg-soft);}
   .social-row a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light);}
+  @media(max-width:820px){.hero-grid{grid-template-columns:1fr;}}
 
-  /* CAROUSEL */
+  /* CAROUSEL (shared by strip and awards) */
   .carousel-wrap{position:relative;padding:40px 0;}
-  .carousel-track-outer{overflow:hidden;border-radius:4px;}
-  .carousel-track{display:flex;gap:14px;transition:transform .45s cubic-bezier(.4,0,.2,1);}
-  .carousel-track .ph{flex:0 0 calc(33.333% - 10px);aspect-ratio:3/2;background:var(--bg-soft);overflow:hidden;border-radius:3px;}
-  .carousel-track .ph img{width:100%;height:100%;object-fit:cover;}
-  .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid var(--line);color:var(--ink);width:40px;height:40px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1);transition:.2s;z-index:2;}
+  .carousel-track-outer{overflow:hidden;}
+  .carousel-track{display:flex;gap:0;will-change:transform;}
+  .carousel-track .ph{flex:0 0 33.333%;height:420px;background:var(--bg-soft);overflow:hidden;cursor:pointer;}
+  .carousel-track .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+  .carousel-track .ph:hover img{transform:scale(1.03);}
+  .carousel-track .ph .caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;padding:28px 14px 14px;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;opacity:0;transition:opacity .3s;}
+  .carousel-track .ph:hover .caption{opacity:1;}
+  .carousel-track .ph{position:relative;}
+  .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid var(--line);color:var(--ink);width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.12);transition:.2s;z-index:2;}
   .carousel-btn:hover{border-color:var(--accent);color:var(--accent);}
-  .carousel-btn.prev{left:-20px;}
-  .carousel-btn.next{right:-20px;}
-  @media(max-width:700px){.carousel-track .ph{flex:0 0 calc(50% - 7px);}.carousel-btn{display:none;}}
+  .carousel-btn.prev{left:-22px;}
+  .carousel-btn.next{right:-22px;}
+  @media(max-width:700px){.carousel-track .ph{flex:0 0 50%;height:280px;}.carousel-btn{display:none;}}
 
   /* SECTION */
   section{padding:80px 0;border-bottom:1px solid var(--line);}
@@ -79,15 +78,15 @@
   .about-photo img{width:100%;height:100%;object-fit:cover;}
   .about-text p{color:var(--ink-dim);margin-bottom:18px;font-size:1.02rem;}
   .about-text p strong{color:var(--ink);}
-  @media(max-width:820px){.about-grid,.hero-grid{grid-template-columns:1fr;}}
+  @media(max-width:820px){.about-grid{grid-template-columns:1fr;}}
 
   /* SPEAKING GALLERY */
   .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
   .gallery .ph{aspect-ratio:1/1;background:var(--bg-soft);overflow:hidden;border-radius:3px;position:relative;cursor:pointer;}
   .gallery .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
   .gallery .ph:hover img{transform:scale(1.05);}
-  .gallery .ph .caption,.awards-gallery .ph .caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;padding:28px 14px 14px;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;opacity:0;transition:opacity .3s;}
-  .gallery .ph:hover .caption,.awards-gallery .ph:hover .caption{opacity:1;}
+  .gallery .ph .caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;padding:28px 14px 14px;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;opacity:0;transition:opacity .3s;}
+  .gallery .ph:hover .caption{opacity:1;}
   @media(max-width:700px){.gallery{grid-template-columns:repeat(2,1fr);}}
 
   /* LIGHTBOX */
@@ -102,17 +101,11 @@
   .lightbox-close{position:fixed;top:24px;right:28px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;z-index:201;line-height:1;}
   @media(max-width:640px){.lightbox-inner{grid-template-columns:1fr;}.lightbox-text{padding:28px 24px;}}
 
-  /* AWARDS GALLERY */
-  .awards-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-  .awards-gallery .ph{aspect-ratio:1/1;background:var(--bg-soft);overflow:hidden;border-radius:3px;position:relative;cursor:pointer;}
-  .awards-gallery .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
-  .awards-gallery .ph:hover img{transform:scale(1.05);}
-  @media(max-width:820px){.awards-gallery{grid-template-columns:repeat(2,1fr);}}
-
-  /* LOGOS */
+  /* LOGOS — first 3 logos get a boost */
   .logos-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:32px 48px;align-items:center;justify-items:center;}
-  .logos-grid img{height:44px;width:auto;max-width:120px;object-fit:contain;filter:grayscale(1) opacity(.45);transition:filter .3s;}
+  .logos-grid img{height:44px;width:auto;max-width:130px;object-fit:contain;filter:grayscale(1) opacity(.45);transition:filter .3s;}
   .logos-grid img:hover{filter:grayscale(0) opacity(1);}
+  .logos-grid img.logo-sm{height:62px;max-width:150px;}
 
   /* CONTACT */
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
@@ -167,19 +160,19 @@
   </div>
 </section>
 
-<!-- CAROUSEL -->
+<!-- STRIP CAROUSEL -->
 <div class="wrap">
   <div class="carousel-wrap">
-    <button class="carousel-btn prev" id="carouselPrev">&#8592;</button>
+    <button class="carousel-btn prev" id="stripPrev">&#8592;</button>
     <div class="carousel-track-outer">
-      <div class="carousel-track" id="carouselTrack">
+      <div class="carousel-track" id="stripTrack">
         <div class="ph"><img src="images/strip-1.jpg" alt=""></div>
         <div class="ph"><img src="images/strip-2.jpg" alt=""></div>
         <div class="ph"><img src="images/strip-3.jpg" alt=""></div>
         <div class="ph"><img src="images/strip-4.jpg" alt=""></div>
       </div>
     </div>
-    <button class="carousel-btn next" id="carouselNext">&#8594;</button>
+    <button class="carousel-btn next" id="stripNext">&#8594;</button>
   </div>
 </div>
 
@@ -232,27 +225,34 @@
   </div>
 </section>
 
+<!-- AWARDS CAROUSEL -->
 <section id="awards">
   <div class="wrap">
     <div class="label">Recognition</div>
     <h2 class="title">Notable Awards</h2>
-    <div class="awards-gallery">
-      <div class="ph" data-title="HSBC UK Intern of the Year" data-section="Notable Awards" onclick="openLightbox(this)">
-        <img src="images/award-1.jpg" alt="HSBC UK Intern of the Year">
-        <div class="caption">HSBC UK Intern of the Year</div>
+    <div class="carousel-wrap">
+      <button class="carousel-btn prev" id="awardsPrev">&#8592;</button>
+      <div class="carousel-track-outer">
+        <div class="carousel-track" id="awardsTrack">
+          <div class="ph" data-title="HSBC UK Intern of the Year" data-section="Notable Awards" onclick="openLightbox(this)">
+            <img src="images/award-1.jpg" alt="HSBC UK Intern of the Year">
+            <div class="caption">HSBC UK Intern of the Year</div>
+          </div>
+          <div class="ph" data-title="Class Valedictorian — Top of Graduating Class" data-section="Notable Awards" onclick="openLightbox(this)">
+            <img src="images/award-2.jpg" alt="Class Valedictorian">
+            <div class="caption">Class Valedictorian — Top of Graduating Class</div>
+          </div>
+          <div class="ph" data-title="Nova 111 List — Top 10 Students with Highest Potential (Economics)" data-section="Notable Awards" onclick="openLightbox(this)">
+            <img src="images/award-3.jpg" alt="Nova 111 List">
+            <div class="caption">Nova 111 List — Top 10 Students (Economics)</div>
+          </div>
+          <div class="ph" data-title="Best Student Academic Distinction Award 2020–2023" data-section="Notable Awards" onclick="openLightbox(this)">
+            <img src="images/award-4.jpg" alt="Academic Distinction Award">
+            <div class="caption">Academic Distinction Award 2020–2023</div>
+          </div>
+        </div>
       </div>
-      <div class="ph" data-title="Class Valedictorian — Top of Graduating Class" data-section="Notable Awards" onclick="openLightbox(this)">
-        <img src="images/award-2.jpg" alt="Class Valedictorian">
-        <div class="caption">Class Valedictorian — Top of Graduating Class</div>
-      </div>
-      <div class="ph" data-title="Nova 111 List — Top 10 Students with Highest Potential (Economics)" data-section="Notable Awards" onclick="openLightbox(this)">
-        <img src="images/award-3.jpg" alt="Nova 111 List">
-        <div class="caption">Nova 111 List — Top 10 Students (Economics)</div>
-      </div>
-      <div class="ph" data-title="Best Student Academic Distinction Award 2020–2023" data-section="Notable Awards" onclick="openLightbox(this)">
-        <img src="images/award-4.jpg" alt="Academic Distinction Award">
-        <div class="caption">Academic Distinction Award 2020–2023</div>
-      </div>
+      <button class="carousel-btn next" id="awardsNext">&#8594;</button>
     </div>
   </div>
 </section>
@@ -260,11 +260,11 @@
 <section id="featured">
   <div class="wrap">
     <h2 class="title" style="text-align:center;">Featured In</h2>
-    <!-- 10 logos, 5 per row — centered and equal size -->
     <div class="logos-grid">
-      <img src="images/logo-1.png" alt="Loro Piana">
-      <img src="images/logo-2.png" alt="180 Degrees Consulting">
-      <img src="images/logo-3.png" alt="Britannia">
+      <!-- logo-sm class = slightly larger, for smaller logos -->
+      <img src="images/logo-1.png" alt="Loro Piana" class="logo-sm">
+      <img src="images/logo-2.png" alt="180 Degrees Consulting" class="logo-sm">
+      <img src="images/logo-3.png" alt="Britannia" class="logo-sm">
       <img src="images/logo-4.png" alt="EY">
       <img src="images/logo-5.png" alt="LVMH">
       <img src="images/logo-6.png" alt="BCG">
@@ -281,7 +281,15 @@
     <div>
       <div class="label">Get In Touch</div>
       <h2 class="title">Contact</h2>
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <!--
+        Using FormSubmit.co — free, no account needed.
+        First submission sends a confirmation email to pa.ruizarango@gmail.com.
+        Click "Confirm your email" in that email and the form works forever after.
+      -->
+      <form action="https://formsubmit.co/pa.ruizarango@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from pabloruizarango.com">
+        <input type="hidden" name="_next" value="https://pabloruizarango.com">
+        <input type="hidden" name="_captcha" value="false">
         <input type="text" name="name" placeholder="Name" required>
         <input type="email" name="email" placeholder="Email" required>
         <textarea name="message" placeholder="Message" required></textarea>
@@ -314,43 +322,57 @@
 <script>
   // Nav toggle
   const toggle = document.getElementById('menuToggle');
-  const links = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
-  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-  // Carousel
-  const track = document.getElementById('carouselTrack');
-  const slides = track.querySelectorAll('.ph');
-  let current = 0;
-  const visible = () => window.innerWidth <= 700 ? 2 : 3;
-  const slideWidth = () => {
-    const gap = 14;
-    const v = visible();
-    return (track.parentElement.offsetWidth - gap * (v - 1)) / v + gap;
-  };
-  function updateCarousel(){
-    const max = slides.length - visible();
-    current = Math.max(0, Math.min(current, max));
-    track.style.transform = `translateX(-${current * slideWidth()}px)`;
+  // ── Infinite Carousel Factory ──────────────────────────────────────────────
+  function makeCarousel(trackId, prevId, nextId) {
+    const track = document.getElementById(trackId);
+    const origSlides = Array.from(track.querySelectorAll('.ph'));
+    const n = origSlides.length;
+
+    // Clone all slides and append so we can loop seamlessly
+    origSlides.forEach(s => track.appendChild(s.cloneNode(true)));
+
+    let current = 0;
+    const vis = () => window.innerWidth <= 700 ? 2 : 3;
+    const slideW = () => track.parentElement.offsetWidth / vis();
+
+    function goTo(idx, animate) {
+      current = idx;
+      track.style.transition = animate ? 'transform .45s cubic-bezier(.4,0,.2,1)' : 'none';
+      track.style.transform = `translateX(-${current * slideW()}px)`;
+    }
+
+    // After animation ends, silently snap back if we've entered the clone zone
+    track.addEventListener('transitionend', () => {
+      if (current >= n) goTo(current - n, false);
+      if (current < 0)  goTo(current + n, false);
+    });
+
+    document.getElementById(nextId).addEventListener('click', () => goTo(current + 1, true));
+    document.getElementById(prevId).addEventListener('click', () => goTo(current - 1, true));
+    window.addEventListener('resize', () => goTo(current, false));
   }
-  document.getElementById('carouselNext').addEventListener('click', () => { current++; updateCarousel(); });
-  document.getElementById('carouselPrev').addEventListener('click', () => { current--; updateCarousel(); });
-  window.addEventListener('resize', updateCarousel);
 
-  // Lightbox
-  function openLightbox(el){
+  makeCarousel('stripTrack',  'stripPrev',  'stripNext');
+  makeCarousel('awardsTrack', 'awardsPrev', 'awardsNext');
+
+  // ── Lightbox ───────────────────────────────────────────────────────────────
+  function openLightbox(el) {
     document.getElementById('lightboxImg').src = el.querySelector('img').src;
     document.getElementById('lightboxTitle').textContent = el.dataset.title;
     document.getElementById('lightboxSection').textContent = el.dataset.section || 'Speaking';
     document.getElementById('lightbox').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-  function closeLightbox(e){
-    if(e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
+  function closeLightbox(e) {
+    if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
     document.getElementById('lightbox').classList.remove('open');
     document.body.style.overflow = '';
   }
-  document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox({target:document.getElementById('lightbox')}); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') }); });
 </script>
 
 </body>
